@@ -1,10 +1,16 @@
 import React from 'react'
-import { SafeAreaView, Text } from 'react-native'
+import { SafeAreaView, Text, TouchableOpacity } from 'react-native'
+import { Navigation } from 'react-native-navigation'
 
-export default () => (
+export default ({ componentId }) => (
   <SafeAreaView>
-    <Text>
-      {'No Thanks'}
-    </Text>
+    <TouchableOpacity onPress={() => Navigation.push(componentId, {
+      component: { name: 'login' },
+    })}
+    >
+      <Text>
+        {'No Thanks'}
+      </Text>
+    </TouchableOpacity>
   </SafeAreaView>
 )
