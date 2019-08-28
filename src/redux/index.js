@@ -7,7 +7,6 @@ import thunk from 'redux-thunk'
 // Reducers
 import user from './user'
 
-
 const encryptor = createEncryptor({
   secretKey: 'spot-lager-extra',
 })
@@ -22,7 +21,7 @@ const reducers = persistCombineReducers(config, {
   user,
 })
 
-const configureStore = (env) => {
+const configureStore = (env, callback) => {
   const middleware = [thunk]
 
   const con = {}
@@ -34,7 +33,7 @@ const configureStore = (env) => {
     con.store = createStore(reducers, applyMiddleware(...middleware))
   }
 
-  con.persistor = persistStore(con.store)
+  con.persistor = persistStore(con.store, null, callback)
   return con
 }
 

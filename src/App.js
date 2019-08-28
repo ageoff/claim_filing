@@ -1,39 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { SafeAreaView, Text, TouchableOpacity } from 'react-native'
-import { Navigation } from 'react-native-navigation'
-import { setUsername } from './redux/user'
+import { SafeAreaView, Text } from 'react-native'
 
-export const App = ({ componentId, username, changeUser }) => (
+export const App = () => (
   <SafeAreaView>
-    <TouchableOpacity onPress={() => Navigation.push(componentId, {
-      component: { name: 'login' },
-    })}
-    >
-      <Text>
-        {`No Thanks ${username}`}
-      </Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={() => changeUser('NEWONE')}>
-      <Text>
-        {'Set the username'}
-      </Text>
-    </TouchableOpacity>
+    <Text>
+      {'Loading'}
+    </Text>
   </SafeAreaView>
 )
 
 App.propTypes = {
-  componentId: PropTypes.string.isRequired,
-  username: PropTypes.string.isRequired,
-  // Functions
-  changeUser: PropTypes.func.isRequired,
 }
-const mapStateToProps = (state) => ({
-  username: state.user.username,
-})
-const mapDispatchToProps = (dispatch) => ({
-  changeUser: (u) => dispatch(setUsername(u)),
-})
+const mapStateToProps = () => ({})
+const mapDispatchToProps = () => ({})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

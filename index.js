@@ -8,8 +8,26 @@ import Login from './src/containers/Login'
 
 import configureStore from './src/redux'
 
-const con = configureStore('testing')
-con.persistor.purge()
+const con = configureStore('testing', () => {
+  const { store } = con
+  const { username } = store.getState().user
+  if (username !== '') {
+    Navigation.setRoot({
+      root: {
+        stack: {
+          children: [{
+            component: {
+              id: 'screen.login',
+              name: 'login',
+            },
+          }],
+          options: {},
+        },
+      },
+    })
+  }
+})
+// con.persistor.purge()
 const { store } = con
 
 // AppRegistry.registerComponent(appName, () => App)
@@ -24,8 +42,7 @@ Navigation.events().registerAppLaunchedListener(() => {
             id: 'screen.welcome',
             name: 'welcome',
           },
-        },
-        ],
+        }],
         options: {},
       },
     },
