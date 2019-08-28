@@ -8,13 +8,21 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "prop-types": "15.7.2",
     "react": "16.8.6",
     "react-native": "0.60.5",
-    "react-native-navigation": "2.27.1"
+    "react-native-navigation": "2.27.1",
+    "react-redux": "7.1.1",
+    "redux": "4.0.4",
+    "redux-actions": "2.6.5",
+    "redux-persist": "5.10.0",
+    "redux-persist-transform-encrypt": "2.0.1",
+    "redux-thunk": "2.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.5.5",
     "@babel/runtime": "7.5.5",
+    "babel-eslint": "10.0.3",
     "babel-jest": "24.9.0",
     "eslint": "6.1.0",
     "eslint-config-airbnb": "18.0.1",
