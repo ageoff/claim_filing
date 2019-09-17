@@ -2,9 +2,7 @@ import React from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Provider } from 'react-redux'
-import Welcome from './containers/Welcome'
-import Login from './containers/Login'
-import Home from './containers/Home'
+import navStack from './lib/NavigationStack'
 
 import NavigationService from './lib/NavigationService'
 import configureStore from './redux'
@@ -13,11 +11,7 @@ const con = configureStore('testing', () => {})
 // con.persistor.purge()
 const { store } = con
 
-const RootStack = createStackNavigator({
-  Welcome,
-  Login,
-  Home,
-},
+const RootStack = createStackNavigator(navStack,
 {
   initialRouteName: 'Welcome',
 })
