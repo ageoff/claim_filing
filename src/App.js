@@ -2,6 +2,7 @@ import React from 'react'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Provider } from 'react-redux'
+import Welcome from './containers/Welcome'
 import Login from './containers/Login'
 import Home from './containers/Home'
 
@@ -13,8 +14,12 @@ const con = configureStore('testing', () => {})
 const { store } = con
 
 const RootStack = createStackNavigator({
+  Welcome,
   Login,
   Home,
+},
+{
+  initialRouteName: 'Welcome',
 })
 
 const Navigation = createAppContainer(RootStack)

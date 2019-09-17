@@ -2,28 +2,41 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SafeAreaView, View } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import { Text, Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { login } from '../redux/user'
+import { logout } from '../redux/user'
 
-class Login extends React.Component {
+class Home extends React.Component {
   render = () => (
     <SafeAreaView>
       <View>
         <Text h2>Home</Text>
-
+        <Button
+          title="Logout"
+          icon={(
+            <Icon
+              name="sign-out"
+              size={15}
+              color="white"
+              style={{ paddingRight: 10 }}
+            />
+          )}
+          onPress={this.props.doLogout}
+        />
       </View>
     </SafeAreaView>
   )
 }
 
-Login.propTypes = {
+Home.propTypes = {
+  doLogout: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  doLogout: () => dispatch(logout()),
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

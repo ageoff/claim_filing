@@ -1,14 +1,24 @@
-import { NavigationActions } from 'react-navigation'
+import { NavigationActions, StackActions } from 'react-navigation'
 
 let navigator
 
-function setTopLevelNavigator(navigatorRef) {
+const setTopLevelNavigator = (navigatorRef) => {
   navigator = navigatorRef
 }
 
-function navigate(routeName, params) {
+const navigate = (routeName, params) => {
   navigator.dispatch(
     NavigationActions.navigate({
+      routeName,
+      params,
+    }),
+  )
+}
+
+const replace = (routeName, params) => {
+  navigator.dispatch(
+    StackActions.replace({
+      newKey: 'ThisIsMine',
       routeName,
       params,
     }),
@@ -19,5 +29,6 @@ function navigate(routeName, params) {
 
 export default {
   navigate,
+  replace,
   setTopLevelNavigator,
 }
