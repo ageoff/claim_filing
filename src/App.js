@@ -1,18 +1,33 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { SafeAreaView, Text } from 'react-native'
+import { createAppContainer } from 'react-navigation'
+import { createStackNavigator } from 'react-navigation-stack'
+import { Provider } from 'react-redux'
+import Login from './containers/Login'
+import Home from './containers/Home'
 
-export const App = () => (
-  <SafeAreaView>
-    <Text>
-      {'Loading'}
-    </Text>
-  </SafeAreaView>
+import NavigationService from './lib/NavigationService'
+import configureStore from './redux'
+
+const con = configureStore('testing', () => {})
+// con.persistor.purge()
+const { store } = con
+
+const RootStack = createStackNavigator({
+  Login,
+  Home,
+})
+
+const Navigation = createAppContainer(RootStack)
+
+// Render the app container component with the provider around it
+const App = () => (
+  <Provider store={store}>
+    <Navigation
+      ref={(navigatorRef) => {
+        NavigationService.setTopLevelNavigator(navigatorRef)
+      }}
+    />
+  </Provider>
 )
 
-App.propTypes = {
-}
-const mapStateToProps = () => ({})
-const mapDispatchToProps = () => ({})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App

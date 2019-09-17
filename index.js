@@ -1,50 +1,34 @@
 /**
  * @format
  */
-import { Navigation } from 'react-native-navigation'
-import { Provider } from 'react-redux'
+// import { Provider } from 'react-redux'
+import { AppRegistry } from 'react-native'
 import App from './src/App'
-import Login from './src/containers/Login'
 
-import configureStore from './src/redux'
+// import configureStore from './src/redux'
 
-const con = configureStore('testing', () => {
-  const { store } = con
-  const { username } = store.getState().user
-  if (username !== '') {
-    Navigation.setRoot({
-      root: {
-        stack: {
-          children: [{
-            component: {
-              id: 'screen.login',
-              name: 'login',
-            },
-          }],
-          options: {},
-        },
-      },
-    })
-  }
-})
+// const con = configureStore('testing', () => {
+// const { store } = con
+// const { username } = store.getState().user
+// console.log(username)
+// if (username !== '') {
+//   console.log('WE ARE CHAGING THE ROOT')
+//   Navigation.setRoot({
+//     root: {
+//       stack: {
+//         children: [{
+//           component: {
+//             id: 'screen.login',
+//             name: 'login',
+//           },
+//         }],
+//         options: {},
+//       },
+//     },
+//   })
+// }
+// })
 // con.persistor.purge()
-const { store } = con
+// const { store } = con
 
-// AppRegistry.registerComponent(appName, () => App)
-Navigation.events().registerAppLaunchedListener(() => {
-  Navigation.registerComponentWithRedux('welcome', () => App, Provider, store)
-  Navigation.registerComponentWithRedux('login', () => Login, Provider, store)
-  Navigation.setRoot({
-    root: {
-      stack: {
-        children: [{
-          component: {
-            id: 'screen.welcome',
-            name: 'welcome',
-          },
-        }],
-        options: {},
-      },
-    },
-  })
-})
+AppRegistry.registerComponent('ClaimFiling', () => App)
