@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SafeAreaView, View } from 'react-native'
-import { Text, Button, ListItem } from 'react-native-elements'
+import { Text, Button, ListItem, Divider } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon5 from 'react-native-vector-icons/FontAwesome5'
 import IconE from 'react-native-vector-icons/Entypo'
 import { logout } from '../redux/user'
+import { containers, headers, colors } from '../assets/Styles'
 
 const actions = [
   {
@@ -15,7 +16,7 @@ const actions = [
     icon: <Icon
       name="file-text"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
   {
@@ -24,7 +25,7 @@ const actions = [
     icon: <Icon
       name="info"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
   {
@@ -33,7 +34,7 @@ const actions = [
     icon: <Icon
       name="dollar"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
   {
@@ -42,7 +43,7 @@ const actions = [
     icon: <Icon5
       name="mail-bulk"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
   {
@@ -51,7 +52,7 @@ const actions = [
     icon: <IconE
       name="text"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
   {
@@ -60,7 +61,7 @@ const actions = [
     icon: <IconE
       name="text"
       size={15}
-      color="black"
+      color={colors.mainBlue}
     />,
   },
 ]
@@ -69,32 +70,37 @@ class Home extends React.Component {
   render = () => {
     const { navigation } = this.props
     return (
-    <SafeAreaView>
-      <View>
-        <Text h2>Home</Text>
+    <SafeAreaView style={containers.main}>
+      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+        <View>
+        <View style={headers.headerBorder}>
+          <Text style={headers.h1}>Home</Text>
+        </View>
         {actions.map((action, i) => (
           <ListItem
             key={i}
             title={action.title}
+            titleStyle={headers.h2}
             leftIcon={action.icon}
             onPress={()=>navigation.navigate(action.nav)}
-            bottomDivider
-            chevron />
+            containerStyle={{ borderBottomColor: colors.mainYellow, borderBottomWidth: 1 }}
+            chevron={{ color: colors.mainBlue }} />
         ))}
-        <Button
-          title="Logout"
-          icon={(
-            <Icon
-              name="sign-out"
-              size={15}
-              color="white"
-              style={{ paddingRight: 10 }}
-            />
-          )}
-          onPress={this.props.doLogout}
-        />
       </View>
-    </SafeAreaView>
+      <Button
+        title="Logout"
+        icon={(
+          <Icon
+            name="sign-out"
+            size={15}
+            color="white"
+            style={{ paddingRight: 10 }}
+          />
+        )}
+        onPress={this.props.doLogout}
+      />
+      </View>
+  </SafeAreaView>
   )
 }
 }

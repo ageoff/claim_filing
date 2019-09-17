@@ -3,6 +3,7 @@ import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 import { Provider } from 'react-redux'
 import navStack from './lib/NavigationStack'
+import { colors } from './assets/Styles'
 
 import NavigationService from './lib/NavigationService'
 import configureStore from './redux'
@@ -25,6 +26,7 @@ const App = () => (
       ref={(navigatorRef) => {
         NavigationService.setTopLevelNavigator(navigatorRef)
       }}
+      style={{ flex: 1 }}
     />
   </Provider>
 )

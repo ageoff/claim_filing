@@ -3,22 +3,29 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SafeAreaView, View } from 'react-native'
 import { Text } from 'react-native-elements'
+import { headers, containers } from '../assets/Styles'
 
 import WeekSelector from '../components/WeekSelector'
 import ClaimQuestion from '../components/ClaimQuestion'
 import ClaimReport from '../components/ClaimReport'
+import ClaimWarning from '../components/ClaimWarning'
 
-const getContent = (selectedWeekId, complete) => {
+const getContent = (selectedWeekId, complete, acceptedWarning) => {
   if (complete) return <ClaimReport />
   if (selectedWeekId === 0) return <WeekSelector />
+  if (!acceptedWarning) return <ClaimWarning />
   return <ClaimQuestion />
 }
 
-const FileClaim = ({ selectedWeekId, complete }) => (
-  <SafeAreaView>
-    <View>
-      <Text h2>File A Claim</Text>
-      {getContent(selectedWeekId, complete)}
+const FileClaim = ({ selectedWeekId, complete, acceptedWarning }) => (
+  <SafeAreaView style={containers.main}>
+    <View style={{ flex: 1, flexDirection: 'column' }}>
+      <View style={headers.headerBorder}>
+        <Text style={headers.h1}>File A Claim</Text>
+      </View>
+      <View style={containers.content}>
+        {getContent(selectedWeekId, complete, acceptedWarning)}
+      </View>
     </View>
   </SafeAreaView>
 )
@@ -29,15 +36,13 @@ FileClaim.propTypes = {
   }).isRequired,
   selectedWeekId: PropTypes.number.isRequired,
   complete: PropTypes.bool.isRequired,
+  acceptedWarning: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-  availableWeeks: state.claim.availableWeeks,
   selectedWeekId: state.claim.selectedWeekId,
-  questions: state.claim.questions,
-  currentQuestion: state.claim.currentQuestion,
   complete: state.claim.complete,
-  answers: state.claim.answers,
+  acceptedWarning: state.claim.acceptedWarning,
 })
 const mapDispatchToProps = () => ({})
 
