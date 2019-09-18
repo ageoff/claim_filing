@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions'
 import NavigationService from '../lib/NavigationService'
-import { loadAvailableWeeks, loadQuestions } from './claim'
+import { loadAvailableWeeks, loadQuestions, resetClaimState } from './claim'
 
 const initialState = {
   username: '',
@@ -35,5 +35,6 @@ export const login = (email, password) => (dispatch) => {
 }
 export const logout = () => (dispatch) => {
   dispatch(resetUserState())
+  dispatch(resetClaimState())
   NavigationService.replace('Login')
 }

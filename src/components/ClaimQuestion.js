@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { View } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 import { answerQuestion } from '../redux/claim'
-import { headers } from '../assets/Styles'
+import { headers, colors } from '../assets/Styles'
 
 const ClaimQuestion = ({ question, questionIndex, onAnswer }) => (
   <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
@@ -12,8 +12,8 @@ const ClaimQuestion = ({ question, questionIndex, onAnswer }) => (
     <Text style={headers.text}>{question.text}</Text>
     </View>
     <View style={{ flexDirection: 'row' }}>
-      <Button containerStyle={{flex: 1}} buttonStyle={{ backgroundColor: 'green', padding: 10, marginRight: 2.5 }} title="Yes" onPress={() => onAnswer(true)} />
-      <Button containerStyle={{flex: 1}} buttonStyle={{ backgroundColor: 'red', padding: 10, marginLeft: 2.5 }} title="No" onPress={() => onAnswer(false)} />
+      <Button containerStyle={{flex: 1}} buttonStyle={{ backgroundColor: colors.mainBlue, padding: 10, marginRight: 2.5 }} title="Yes" onPress={() => onAnswer(true)} />
+      <Button containerStyle={{flex: 1}} buttonStyle={{ backgroundColor: colors.backgroundGrey, padding: 10, marginLeft: 2.5 }} title="No" onPress={() => onAnswer(false)} />
     </View>
   </View>
 )

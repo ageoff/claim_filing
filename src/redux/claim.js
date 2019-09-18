@@ -59,20 +59,22 @@ export const restartClaim = () => (dispatch) => {
   dispatch(setAnswers([]))
   dispatch(setSelectedWeekId(0))
   dispatch(setCurrentQuestion(0))
+  dispatch(setAcceptedWarning(false))
   dispatch(setComplete(false))
 }
 
 export const loadAvailableWeeks = () => (dispatch) => {
   dispatch(setAvailableWeeks([
-    { id: 1, text: 'This Week' },
-    { id: 2, text: 'Next Week' },
-    { id: 3, text: 'Another Week' },
+    { id: 1, text: '01/01/2019' },
+    { id: 2, text: '01/07/2019' },
+    { id: 3, text: '01/14/2019' },
   ]))
 }
 export const loadQuestions = () => (dispatch) => {
   dispatch(setQuestions([
-    { id: 1, text: 'Do you know the answer?' },
-    { id: 2, text: 'What about this answer?' },
-    { id: 3, text: 'Third Answer?' },
+    { id: 1, text: 'Were you physically able to work four or more days during the week being claimed?' },
+    { id: 2, text: 'Did you receive any bonus pay during the week being claimed?' },
+    { id: 3, text: 'Did you refuse work during the week being claimed?' },
+    { id: 4, text: 'Did you work Sunday through Saturday, during the week being claimed?' },
   ]))
 }
