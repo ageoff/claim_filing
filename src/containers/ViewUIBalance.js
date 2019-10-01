@@ -7,13 +7,15 @@ import { containers, headers, colors } from '../assets/Styles'
 import { loadBalance } from '../redux/balance'
 
 class ViewUIBalance extends React.Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     const { loadUIBalance } = this.props
     loadUIBalance()
   }
 
   getContent = () => {
-    const { loading, balance, loadUIBalance, lastUpdated } = this.props
+    const {
+      loading, balance, loadUIBalance, lastUpdated,
+    } = this.props
     if (loading) {
       return (
         <View>
@@ -24,6 +26,8 @@ class ViewUIBalance extends React.Component {
     return (
       <PricingCard
         title="UI Balance"
+        color={colors.mainBlue}
+        pricingStyle={{ color: colors.backgroundGrey }}
         price={this.currencyFormat(balance)}
         info={['Balance as of', lastUpdated]}
         button={{ title: 'Reload', icon: 'refresh' }}

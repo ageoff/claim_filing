@@ -21,6 +21,8 @@ export const headers = StyleSheet.create({
   headerBorder: {
     borderBottomWidth: 4,
     borderBottomColor: colors.mainYellow,
+    marginBottom: 10,
+    paddingBottom: 5,
   },
   h2: {
     color: colors.mainBlue,
@@ -71,13 +73,18 @@ export const headers = StyleSheet.create({
 export const containers = StyleSheet.create({
   main: {
     flex: 1,
-    marginLeft: 5,
-    marginRight: 5,
+    paddingLeft: 5,
+    paddingRight: 5,
     backgroundColor: colors.mainBackground,
   },
   content: {
     flex: 1,
     marginLeft: 10,
     marginRight: 10,
+  },
+  pageHeaderContainer: {
+    flex: 1,
+    marginBottom: 10,
+    paddingBottom: 5,
   },
 })

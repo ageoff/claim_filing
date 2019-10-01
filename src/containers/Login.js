@@ -28,7 +28,9 @@ class Login extends React.Component {
           <View style={{ padding: 20, justifyContent: 'center', alignItems: 'center' }}>
             <Image source={logo} />
           </View>
-          <Text style={headers.h1}>Login</Text>
+          <Text style={[headers.h1, { textAlign: 'center', marginLeft: 20, marginTop: 10, marginBottom: 10 }]}>
+            {'Welcome to\nUnemployment Benefits'}
+          </Text>
           {loginStatus !== '' && <View style={{ padding: 20, textAlign: 'center' }}><Text style={headers.errorText}>{loginStatus}</Text></View>}
           <Input
             testID="LoginEmail"
@@ -43,6 +45,7 @@ class Login extends React.Component {
                 style={{ paddingRight: 10 }}
               />
             )}
+            containerStyle={{ marginTop: 10, marginBottom: 10, paddingLeft: 20, paddingRight: 20 }}
             inputStyle={{ color: colors.backgroundGrey }}
             value={email}
             editable
@@ -71,6 +74,7 @@ class Login extends React.Component {
                 style={{ paddingRight: 10 }}
               />
             )}
+            containerStyle={{ marginTop: 10, marginBottom: 10, paddingLeft: 20, paddingRight: 20 }}
             inputStyle={{ color: colors.backgroundGrey }}
             value={password}
             editable
@@ -88,6 +92,10 @@ class Login extends React.Component {
       </SafeAreaView>
     )
   }
+}
+
+Login.navigationOptions = {
+  header: null,
 }
 
 Login.propTypes = {

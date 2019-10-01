@@ -18,11 +18,14 @@ const navigate = (routeName, params) => {
 const replace = (routeName, params) => {
   navigator.dispatch(
     StackActions.replace({
-      newKey: 'ThisIsMine',
       routeName,
       params,
     }),
   )
+}
+
+const goHome = () => {
+  navigator.dispatch(StackActions.popToTop())
 }
 
 // add other navigation functions that you need and export them
@@ -30,5 +33,6 @@ const replace = (routeName, params) => {
 export default {
   navigate,
   replace,
+  goHome,
   setTopLevelNavigator,
 }

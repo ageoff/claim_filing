@@ -8,7 +8,7 @@ import { containers, headers, colors } from '../assets/Styles'
 import ClaimStatusCard from '../components/ClaimStatusCard'
 
 class ViewClaimStatus extends React.Component {
-  componentWillMount = () => {
+  componentDidMount = () => {
     const { loadStatus } = this.props
     loadStatus()
   }
@@ -24,6 +24,7 @@ class ViewClaimStatus extends React.Component {
     }
     return claims.map((claim) => (
       <ClaimStatusCard
+        key={claim.id}
         id={claim.id}
         claimWeek={claim.claim_week}
         status={claim.status}

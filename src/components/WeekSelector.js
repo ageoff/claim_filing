@@ -16,7 +16,7 @@ const WeekSelector = ({ weeks, onSelect }) => (
         title={week.text}
         titleStyle={headers.text}
         onPress={() => onSelect(week.id)}
-        containerStyle={{ borderBottomWidth: 1, borderBottomColor: colors.darkGrey }}
+        containerStyle={{ borderBottomWidth: 1, borderBottomColor: colors.darkGrey, backgroundColor: colors.mainBackground }}
         chevron={{ color: colors.darkGrey }}
       />
     ))}

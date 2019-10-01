@@ -17,5 +17,5 @@ export default {
   ViewUIBalance,
   ContactUs,
   AboutUs,
-  PrivacyPolicy
+  PrivacyPolicy,
 }
