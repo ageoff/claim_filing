@@ -1,10 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { SafeAreaView, View } from 'react-native'
+import { SafeAreaView, View, Image } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { login } from '../redux/user'
+import { containers, headers, colors } from '../assets/Styles'
+
+import logo from '../assets/images/KDOL_Header_Desktop_Logo.png'
 
 class Login extends React.Component {
   constructor(props) {
@@ -20,10 +23,13 @@ class Login extends React.Component {
     const { email, password } = this.state
     const { loginLoading, loginStatus, handleLogin } = this.props
     return (
-      <SafeAreaView>
+      <SafeAreaView style={containers.main}>
         <View>
-          <Text h2>Login</Text>
-          {loginStatus !== '' && <Text h4>{loginStatus}</Text>}
+          <View style={{ padding: 20, justifyContent: 'center', alignItems: 'center' }}>
+            <Image source={logo} />
+          </View>
+          <Text style={headers.h1}>Login</Text>
+          {loginStatus !== '' && <View style={{ padding: 20, textAlign: 'center' }}><Text style={headers.errorText}>{loginStatus}</Text></View>}
           <Input
             testID="LoginEmail"
             ref={(input) => {
@@ -33,10 +39,11 @@ class Login extends React.Component {
               <Icon
                 name="envelope"
                 size={18}
-                color="black"
+                color={colors.mainBlue}
                 style={{ paddingRight: 10 }}
               />
             )}
+            inputStyle={{ color: colors.backgroundGrey }}
             value={email}
             editable
             keyboardType="email-address"
@@ -60,10 +67,11 @@ class Login extends React.Component {
               <Icon
                 name="key"
                 size={18}
-                color="black"
+                color={colors.mainBlue}
                 style={{ paddingRight: 10 }}
               />
             )}
+            inputStyle={{ color: colors.backgroundGrey }}
             value={password}
             editable
             keyboardType="default"
@@ -75,7 +83,7 @@ class Login extends React.Component {
             onSubmitEditing={() => handleLogin(email, password)}
             placeholder="Password"
           />
-          <Button title="Login" loading={loginLoading} onPress={() => handleLogin(email, password)} />
+          <Button title="Login" loading={loginLoading} onPress={() => handleLogin(email, password)} containerStyle={{ padding: 20 }} />
         </View>
       </SafeAreaView>
     )

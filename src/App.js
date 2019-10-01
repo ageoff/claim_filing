@@ -13,9 +13,14 @@ const con = configureStore('testing', () => {})
 const { store } = con
 
 const RootStack = createStackNavigator(navStack,
-{
-  initialRouteName: 'Welcome',
-})
+  {
+    initialRouteName: 'Welcome',
+    defaultNavigationOptions: {
+      headerStyle: {
+        backgroundColor: colors.mainYellow,
+      },
+    },
+  })
 
 const Navigation = createAppContainer(RootStack)
 

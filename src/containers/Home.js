@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SafeAreaView, View } from 'react-native'
-import { Text, Button, ListItem, Divider } from 'react-native-elements'
+import {
+  Text, Button, ListItem,
+} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon5 from 'react-native-vector-icons/FontAwesome5'
 import IconE from 'react-native-vector-icons/Entypo'
@@ -70,39 +72,40 @@ class Home extends React.Component {
   render = () => {
     const { navigation } = this.props
     return (
-    <SafeAreaView style={containers.main}>
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-        <View>
-        <View style={headers.headerBorder}>
-          <Text style={headers.h1}>Home</Text>
-        </View>
-        {actions.map((action, i) => (
-          <ListItem
-            key={i}
-            title={action.title}
-            titleStyle={headers.h2}
-            leftIcon={action.icon}
-            onPress={()=>navigation.navigate(action.nav)}
-            containerStyle={{ borderBottomColor: colors.mainYellow, borderBottomWidth: 1 }}
-            chevron={{ color: colors.mainBlue }} />
-        ))}
-      </View>
-      <Button
-        title="Logout"
-        icon={(
-          <Icon
-            name="sign-out"
-            size={15}
-            color="white"
-            style={{ paddingRight: 10 }}
-          />
+      <SafeAreaView style={containers.main}>
+        <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+          <View>
+            <View style={headers.headerBorder}>
+              <Text style={headers.h1}>Home</Text>
+            </View>
+            {actions.map((action, i) => (
+              <ListItem
+                key={i}
+                title={action.title}
+                titleStyle={headers.h2}
+                leftIcon={action.icon}
+                onPress={() => navigation.navigate(action.nav)}
+                containerStyle={{ borderBottomColor: colors.mainYellow, borderBottomWidth: 1 }}
+                chevron={{ color: colors.mainBlue }}
+              />
+            ))}
+          </View>
+          <Button
+            title="Logout"
+            icon={(
+              <Icon
+                name="sign-out"
+                size={15}
+                color="white"
+                style={{ paddingRight: 10 }}
+              />
         )}
-        onPress={this.props.doLogout}
-      />
-      </View>
-  </SafeAreaView>
-  )
-}
+            onPress={this.props.doLogout}
+          />
+        </View>
+      </SafeAreaView>
+    )
+  }
 }
 
 Home.propTypes = {
