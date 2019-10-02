@@ -1,6 +1,7 @@
 import { createAction, handleActions } from 'redux-actions'
 import NavigationService from '../lib/NavigationService'
-import { loadAvailableWeeks, loadQuestions, resetClaimState } from './claim'
+import { loadClaimMeta, resetClaimState } from './claim'
+import Agent from '../lib/Agent'
 
 const initialState = {
   username: '',
@@ -21,17 +22,21 @@ export const setUsername = createAction('SET_USERNAME')
 export const setLoginLoading = createAction('SET_LOGIN_LOADING')
 export const setLoginStatus = createAction('SET_LOGIN_STATUS')
 export const setLoggedIn = createAction('SET_LOGGED_IN')
-export const login = (email, password) => (dispatch) => {
-  if (email === 'adam' && password === 'password') {
-    dispatch(setUsername(email))
-    dispatch(setLoginStatus(''))
-    dispatch(setLoggedIn(true))
-    dispatch(loadAvailableWeeks())
-    dispatch(loadQuestions())
-    NavigationService.replace('Home')
-  } else {
-    dispatch(setLoginStatus('Bad username and password'))
-  }
+export const doLogin = (email, password) => (dispatch) => {
+  dispatch(setLoginLoading(true))
+  Agent.login(email, password).then((result) => {
+    if (result.ok && result.data) {
+      if (result.data.token) Agent.init(result.data.token)
+      dispatch(setUsername(email))
+      dispatch(setLoginStatus(''))
+      dispatch(setLoggedIn(true))
+      dispatch(loadClaimMeta())
+      dispatch(setLoginLoading(false))
+      NavigationService.replace('Home')
+    } else {
+      dispatch(setLoginStatus(result.data))
+    }
+  })
 }
 export const logout = () => (dispatch) => {
   dispatch(resetUserState())

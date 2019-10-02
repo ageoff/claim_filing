@@ -1,4 +1,5 @@
 import { createAction, handleActions } from 'redux-actions'
+import Agent from '../lib/Agent'
 
 const initialState = {
   availableWeeks: [],
@@ -70,11 +71,16 @@ export const loadAvailableWeeks = () => (dispatch) => {
     { id: 3, text: '01/14/2019' },
   ]))
 }
-export const loadQuestions = () => (dispatch) => {
-  dispatch(setQuestions([
-    { id: 1, text: 'Were you physically able to work four or more days during the week being claimed?' },
-    { id: 2, text: 'Did you receive any bonus pay during the week being claimed?' },
-    { id: 3, text: 'Did you refuse work during the week being claimed?' },
-    { id: 4, text: 'Did you work Sunday through Saturday, during the week being claimed?' },
-  ]))
+
+export const loadClaimMeta = () => (dispatch) => {
+  Agent.loadClaimMeta().then((result) => {
+    if (result.ok && result.data) {
+      console.log(result)
+      dispatch(setQuestions(result.data.questions))
+      dispatch(loadAvailableWeeks())
+    }
+    else {
+      console.log(result)
+    }
+  })
 }

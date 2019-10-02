@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { SafeAreaView, View, Image } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { login } from '../redux/user'
+import { doLogin } from '../redux/user'
 import { containers, headers, colors } from '../assets/Styles'
 
 import logo from '../assets/images/KDOL_Header_Desktop_Logo.png'
@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  handleLogin: (email, password) => (dispatch(login(email, password))),
+  handleLogin: (email, password) => dispatch(doLogin(email, password)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
