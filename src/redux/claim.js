@@ -64,20 +64,12 @@ export const restartClaim = () => (dispatch) => {
   dispatch(setComplete(false))
 }
 
-export const loadAvailableWeeks = () => (dispatch) => {
-  dispatch(setAvailableWeeks([
-    { id: 1, text: '01/01/2019' },
-    { id: 2, text: '01/07/2019' },
-    { id: 3, text: '01/14/2019' },
-  ]))
-}
-
 export const loadClaimMeta = () => (dispatch) => {
   Agent.loadClaimMeta().then((result) => {
     if (result.ok && result.data) {
       console.log(result)
       dispatch(setQuestions(result.data.questions))
-      dispatch(loadAvailableWeeks())
+      dispatch(setAvailableWeeks(result.data.weeks))
     }
     else {
       console.log(result)
