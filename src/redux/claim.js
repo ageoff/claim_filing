@@ -1,4 +1,5 @@
 import { createAction, handleActions } from 'redux-actions'
+import Agent from '../lib/Agent'
 
 const initialState = {
   availableWeeks: [],
@@ -59,20 +60,18 @@ export const restartClaim = () => (dispatch) => {
   dispatch(setAnswers([]))
   dispatch(setSelectedWeekId(0))
   dispatch(setCurrentQuestion(0))
+  dispatch(setAcceptedWarning(false))
   dispatch(setComplete(false))
 }
 
-export const loadAvailableWeeks = () => (dispatch) => {
-  dispatch(setAvailableWeeks([
-    { id: 1, text: 'This Week' },
-    { id: 2, text: 'Next Week' },
-    { id: 3, text: 'Another Week' },
-  ]))
-}
-export const loadQuestions = () => (dispatch) => {
-  dispatch(setQuestions([
-    { id: 1, text: 'Do you know the answer?' },
-    { id: 2, text: 'What about this answer?' },
-    { id: 3, text: 'Third Answer?' },
-  ]))
+export const loadClaimMeta = () => (dispatch) => {
+  Agent.loadClaimMeta().then((result) => {
+    if (result.ok && result.data) {
+      const data = result.data[0]
+      dispatch(setQuestions(data.questions))
+      dispatch(setAvailableWeeks(data.weeks))
+    } else {
+      console.log(result)
+    }
+  })
 }

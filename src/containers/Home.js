@@ -1,13 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { SafeAreaView, View } from 'react-native'
-import { Text, Button, ListItem, Divider } from 'react-native-elements'
+import { SafeAreaView, View, Image } from 'react-native'
+import {
+  Text, Button, ListItem,
+} from 'react-native-elements'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import Icon5 from 'react-native-vector-icons/FontAwesome5'
 import IconE from 'react-native-vector-icons/Entypo'
 import { logout } from '../redux/user'
 import { containers, headers, colors } from '../assets/Styles'
+import mainLogo from '../assets/images/KDOL_Header_Desktop_Logo.png'
 
 const actions = [
   {
@@ -66,26 +69,28 @@ const actions = [
   },
 ]
 
-class Home extends React.Component {
-  render = () => {
-    const { navigation } = this.props
-    return (
-    <SafeAreaView style={containers.main}>
-      <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-        <View>
-        <View style={headers.headerBorder}>
-          <Text style={headers.h1}>Home</Text>
-        </View>
-        {actions.map((action, i) => (
+const Home = ({ navigation, doLogout }) => (
+  <SafeAreaView style={containers.main}>
+    <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
+      <View>
+        {actions.map((action) => (
           <ListItem
-            key={i}
+            key={action.title}
             title={action.title}
             titleStyle={headers.h2}
             leftIcon={action.icon}
-            onPress={()=>navigation.navigate(action.nav)}
-            containerStyle={{ borderBottomColor: colors.mainYellow, borderBottomWidth: 1 }}
-            chevron={{ color: colors.mainBlue }} />
+            onPress={() => navigation.navigate(action.nav)}
+            containerStyle={{
+              borderBottomColor: colors.mainBlue,
+              borderBottomWidth: 1,
+              backgroundColor: colors.mainBackground,
+            }}
+            chevron={{ color: colors.mainBlue }}
+          />
         ))}
+      </View>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Image source={mainLogo} />
       </View>
       <Button
         title="Logout"
@@ -97,16 +102,23 @@ class Home extends React.Component {
             style={{ paddingRight: 10 }}
           />
         )}
-        onPress={this.props.doLogout}
+        onPress={doLogout}
       />
-      </View>
+    </View>
   </SafeAreaView>
-  )
-}
+)
+
+Home.navigationOptions = {
+  title: 'Home',
+  headerTitle: null,
+  headerRight: null,
 }
 
 Home.propTypes = {
   doLogout: PropTypes.func.isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 
 const mapStateToProps = (state) => ({

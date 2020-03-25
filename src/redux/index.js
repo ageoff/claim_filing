@@ -7,6 +7,8 @@ import thunk from 'redux-thunk'
 // Reducers
 import user from './user'
 import claim from './claim'
+import claimstatus from './claimstatus'
+import balance from './balance'
 
 const encryptor = createEncryptor({
   secretKey: 'spot-lager-extra',
@@ -21,6 +23,8 @@ const config = {
 const reducers = persistCombineReducers(config, {
   user,
   claim,
+  claimstatus,
+  balance,
 })
 
 const configureStore = (env, callback) => {
