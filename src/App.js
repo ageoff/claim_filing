@@ -1,4 +1,5 @@
 import React from 'react'
+import { PersistGate } from 'redux-persist/es/integration/react'
 import { Image, TouchableOpacity } from 'react-native'
 import { createAppContainer } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
@@ -10,10 +11,11 @@ import headerLogo from './assets/images/KDOL_Footer_Logo.png'
 
 import NavigationService from './lib/NavigationService'
 import configureStore from './redux'
+import { setLoginStatus, setLoginLoading, setLoggedIn } from './redux/user'
 
 const con = configureStore('testing', () => {})
 // con.persistor.purge()
-const { store } = con
+const { store, persistor } = con
 
 const RootStack = createStackNavigator(navStack,
   {
@@ -23,8 +25,8 @@ const RootStack = createStackNavigator(navStack,
       headerStyle: {
         backgroundColor: colors.mainBlue,
       },
-      headerTitle: <Image source={headerLogo} />,
-      headerRight: (
+      headerTitle: () => <Image source={headerLogo} />,
+      headerRight: () => (
         <TouchableOpacity onPress={NavigationService.goHome}>
           <Icon
             name="home"
@@ -39,15 +41,24 @@ const RootStack = createStackNavigator(navStack,
 
 const Navigation = createAppContainer(RootStack)
 
+const onBeforeLift = () => {
+  console.log('OMOMOMOMOMOMOM')
+  store.dispatch(setLoggedIn(false))
+  store.dispatch(setLoginStatus(''))
+  store.dispatch(setLoginLoading(false))
+}
+
 // Render the app container component with the provider around it
 const App = () => (
   <Provider store={store}>
-    <Navigation
-      ref={(navigatorRef) => {
-        NavigationService.setTopLevelNavigator(navigatorRef)
-      }}
-      style={{ flex: 1 }}
-    />
+    <PersistGate onBeforeLift={onBeforeLift} persistor={persistor}>
+      <Navigation
+        ref={(navigatorRef) => {
+          NavigationService.setTopLevelNavigator(navigatorRef)
+        }}
+        style={{ flex: 1 }}
+      />
+    </PersistGate>
   </Provider>
 )
 

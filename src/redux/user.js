@@ -38,6 +38,20 @@ export const doLogin = (email, password) => (dispatch) => {
     }
   })
 }
+export const doPinLogin = (pin) => (dispatch) => {
+  dispatch(setLoginLoading(true))
+  if (pin.join('') === '1234') {
+    dispatch(setUsername('adam@redivus.com'))
+    dispatch(setLoginStatus(''))
+    dispatch(setLoggedIn(true))
+    dispatch(loadClaimMeta())
+    dispatch(setLoginLoading(false))
+    NavigationService.replace('Home')
+  } else {
+    dispatch(setLoginStatus('Error: Wrong pin'))
+    dispatch(setLoginLoading(false))
+  }
+}
 export const logout = () => (dispatch) => {
   dispatch(resetUserState())
   dispatch(resetClaimState())

@@ -95,7 +95,7 @@ class Login extends React.Component {
 }
 
 Login.navigationOptions = {
-  header: null,
+  header: () => null,
 }
 
 Login.propTypes = {

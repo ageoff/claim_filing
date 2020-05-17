@@ -1,5 +1,6 @@
 import Welcome from '../containers/Welcome'
 import Login from '../containers/Login'
+import PinLogin from '../containers/PinLogin'
 import Home from '../containers/Home'
 import FileClaim from '../containers/FileClaim'
 import ViewClaimStatus from '../containers/ViewClaimStatus'
@@ -11,6 +12,7 @@ import PrivacyPolicy from '../containers/PrivacyPolicy'
 export default {
   Welcome,
   Login,
+  PinLogin,
   Home,
   FileClaim,
   ViewClaimStatus,

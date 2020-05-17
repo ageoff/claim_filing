@@ -8,7 +8,7 @@ class Welcome extends React.Component {
   componentDidMount = () => {
     const { loggedIn, navigation } = this.props
     console.log(loggedIn)
-    if (!loggedIn) navigation.replace('Login')
+    if (!loggedIn) navigation.replace('PinLogin')
     else navigation.replace('Home')
   }
 

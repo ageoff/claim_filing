@@ -1,0 +1,15 @@
+export default [
+  { id: 1, text: 'Did you work any day, Sunday through Saturday, during the week being claimed?' },
+  { id: 2, text: 'Did you receive any bonus pay during the week being claied?' },
+  { id: 3, text: 'Did you receive any holiday pay for the week being claimed?' },
+  { id: 4, text: 'Did you receive any vacation pay for the week being claimed?' },
+  { id: 5, text: 'Did you receive any severance pay for the week being claimed?' },
+  { id: 6, text: 'Did you refuse work during the week being claimed?' },
+  { id: 7, text: 'Did you quit a job or were you firde from a job during the week being claimed?' },
+  { id: 8, text: 'Did you attend school or enter training during the week being claimed?' },
+  { id: 9, text: 'Did you receive or change any type of pensions, other than Social Security benefits, during the week being claimed?' },
+  { id: 10, text: 'Did you apply for or receive any workers compensation payments for the week being claimed that was for a work-connected injury or disability?' },
+  { id: 11, text: 'Were you physically able to work four or more days during the week being claimed?' },
+  { id: 12, text: 'Were you available for work, with no undue restrictions, for four or more days during the week being claimed? Note: Being available for work with no undue restrictions means there was nothing which would have prevented you from accepting work had if been offered to you.' },
+  { id: 13, text: 'Did you look for work as directed by the Kansas Unemployment Contact Center or Internet claims system, during the week being claimed?' },
+]

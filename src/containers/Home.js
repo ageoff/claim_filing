@@ -110,8 +110,8 @@ const Home = ({ navigation, doLogout }) => (
 
 Home.navigationOptions = {
   title: 'Home',
-  headerTitle: null,
-  headerRight: null,
+  headerTitle: () => null,
+  headerRight: () => null,
 }
 
 Home.propTypes = {

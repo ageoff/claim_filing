@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { View } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { Text, Button } from 'react-native-elements'
 import { restartClaim } from '../redux/claim'
 import { getSelectedWeekText } from '../selectors/claim'
@@ -11,7 +11,7 @@ const ClaimReport = ({
   questions, answers, selectedWeekText, onDone,
 }) => (
   <View style={{ flex: 1, flexDirection: 'column', justifyContent: 'space-between' }}>
-    <View>
+    <View style={{ flex: 1, flexDirection: 'column' }}>
       <Text style={headers.h2}>
         {'Week:'}
         <Text style={headers.text}>{selectedWeekText}</Text>
@@ -20,7 +20,7 @@ const ClaimReport = ({
         <View style={{ flex: 1.5 }}><Text style={headers.h3}>Question</Text></View>
         <View style={{ flex: 0.5 }}><Text style={[headers.h3, { textAlign: 'center' }]}>Answer</Text></View>
       </View>
-      <View style={{ flexDirection: 'column' }}>
+      <ScrollView contentContainerStyle={{ flexDirection: 'column' }}>
         {answers.map((ans) => {
           let question = null
           questions.every((q) => {
@@ -46,7 +46,7 @@ const ClaimReport = ({
             </View>
           )
         })}
-      </View>
+      </ScrollView>
     </View>
     <Button title="Done" onPress={onDone} />
   </View>

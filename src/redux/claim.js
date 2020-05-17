@@ -66,8 +66,9 @@ export const restartClaim = () => (dispatch) => {
 
 export const loadClaimMeta = () => (dispatch) => {
   Agent.loadClaimMeta().then((result) => {
+    console.log(result)
     if (result.ok && result.data) {
-      const data = result.data[0]
+      const { data } = result
       dispatch(setQuestions(data.questions))
       dispatch(setAvailableWeeks(data.weeks))
     } else {
